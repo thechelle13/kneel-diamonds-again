@@ -44,6 +44,7 @@ CREATE TABLE orders (
   metalId INTEGER NOT NULL,
   sizeId INTEGER NOT NULL,
   styleId INTEGER NOT NULL,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (metalId) REFERENCES metals(id),
   FOREIGN KEY (sizeId) REFERENCES sizes(id),
   FOREIGN KEY (styleId) REFERENCES styles(id)

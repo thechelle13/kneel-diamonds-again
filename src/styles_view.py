@@ -1,7 +1,7 @@
 import json
 from nss_handler import status
 
-class TypeView():
+class StyleView():
     
     def get(self, handler):
         
