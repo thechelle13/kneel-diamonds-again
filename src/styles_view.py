@@ -41,7 +41,7 @@ class StyleView():
         UPDATE styles
         SET
             style = ?,
-            style_id = ?
+            price = ?
         WHERE id = ?
         """
         number_of_rows_updated = db_update(

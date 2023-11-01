@@ -6,14 +6,14 @@ class MetalView():
     
     def get(self, handler, pk):
         if pk != 0:
-            sql = "SELECT m.id, m.metal, m.price FROM metals s WHERE m.id = ?"
+            sql = "SELECT m.id, m.metal, m.price FROM metals m WHERE m.id = ?"
             query_results = db_get_single(sql, pk)
             serialized_metal = json.dumps(dict(query_results))
 
             return handler.response(serialized_metal, status.HTTP_200_SUCCESS.value)
         else:
 
-            sql = "SELECT m.id, m.metal, m.price FROM metals"
+            sql = "SELECT m.id, m.metal, m.price FROM metals m"
             query_results = db_get_all(sql)
             metals = [dict(row) for row in query_results]
             serialized_metals = json.dumps(metals)
@@ -33,7 +33,7 @@ class MetalView():
         UPDATE Ship
         SET
             metal = ?,
-            metal_id = ?
+            price = ?
         WHERE id = ?
         """
         number_of_rows_updated = db_update(
