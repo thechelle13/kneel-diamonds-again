@@ -122,7 +122,7 @@ class OrderView():
         """
         number_of_rows_updated = db_update(
             sql,
-            (order_data['order'], order_data['price'], pk)
+            (order_data['metalId'], order_data['sizeId'], order_data['styleId'], pk)
         )
 
         if number_of_rows_updated > 0:
@@ -132,19 +132,18 @@ class OrderView():
 
     def insert(self, handler, order_data):
         sql = """
-        INSERT INTO orders 
-        VALUES(null, ?,?)
+        INSERT INTO orders (metalId, sizeId, styleId)
+        VALUES(?,?,?)
                 
         """
                 
-        new_item = db_create(sql,(order_data['metalId'], order_data['styleId']))
-
+        new_item = db_create(sql,(order_data['metalId'],order_data['sizeId'],order_data['styleId']))
         if new_item is not None:
             response_data =  {
                 "id" : new_item,
                 "metalId": order_data ['metalId'],
-                "styleId": order_data ['styleId'],
-                "sizeId": order_data ['sizeId']
+                "sizeId": order_data ['sizeId'],
+                "styleId": order_data ['styleId']
 
             }
         
