@@ -13,7 +13,7 @@ class SizeView():
             return handler.response(serialized_size, status.HTTP_200_SUCCESS.value)
         else:
 
-            sql = "SELECT s.id, s.carets, s.price FROM sizes"
+            sql = "SELECT s.id, s.carets, s.price FROM sizes s"
             query_results = db_get_all(sql)
             sizes = [dict(row) for row in query_results]
             serialized_sizes = json.dumps(sizes)
@@ -33,7 +33,7 @@ class SizeView():
         UPDATE sizes
         SET
             size = ?,
-            size_id = ?
+            carets = ?
         WHERE id = ?
         """
         number_of_rows_updated = db_update(

@@ -3,7 +3,7 @@ from http.server import HTTPServer
 from nss_handler import HandleRequests, status
 
 # Add your imports below this line
-from src import MetalView, SizeView, StyleView
+from src import MetalView, SizeView, StyleView, OrderView
 
 
 class JSONServer(HandleRequests):
@@ -61,7 +61,8 @@ class JSONServer(HandleRequests):
             routes = {
                 "metals": MetalView,
                 "sizes": SizeView,
-                "types": StyleView,
+                "styles": StyleView,
+                "orders": OrderView
             }
 
             matching_class = routes[url["requested_resource"]]
@@ -71,7 +72,7 @@ class JSONServer(HandleRequests):
 
     def expand_response(self, url, view, expand_param):
         if expand_param is not None:
-            response = view.get_expanded(self, url["pk"])
+            response = view.get_expanded(self, url["pk"], expand_param)
         else:
             response = view.get(self, url["pk"])
         if response is not None:
