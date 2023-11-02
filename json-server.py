@@ -3,7 +3,7 @@ from http.server import HTTPServer
 from nss_handler import HandleRequests, status
 
 # Add your imports below this line
-from src import MetalView, SizeView, TypeView
+from src import MetalView, SizeView, StyleView
 
 
 class JSONServer(HandleRequests):
@@ -61,7 +61,7 @@ class JSONServer(HandleRequests):
             routes = {
                 "metals": MetalView,
                 "sizes": SizeView,
-                "types": TypeView,
+                "types": StyleView,
             }
 
             matching_class = routes[url["requested_resource"]]
@@ -83,7 +83,7 @@ class JSONServer(HandleRequests):
 #
 def main():
     host = ''
-    port = 8000
+    port = 3000
     HTTPServer((host, port), JSONServer).serve_forever()
 
 if __name__ == "__main__":
